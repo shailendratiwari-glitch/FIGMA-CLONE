@@ -1,0 +1,730 @@
+/* ==========================================================================
+   1. CUSTOM PROPERTIES & VARIABLES
+   ========================================================================== */
+:root {
+    --primary-gradient: linear-gradient(180deg, #696eff 0%, #5d65f6 100%);
+    --bg-blue: #5d65f6;
+    --text-light: #ffffff;
+    --text-dark: #0f172a;
+    --text-muted: #e2e8f0;
+    --accent-orange: #ff7e47;
+    --btn-dark-bg: #071927;
+    
+    --font-heading: 'Raleway', sans-serif;
+    --font-body: 'Poppins', sans-serif;
+}
+
+/* ==========================================================================
+   2. GLOBAL RESET & BASE STYLES
+   ========================================================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+img,
+svg {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+body {
+    font-family: var(--font-body);
+    background-color: #ffffff;
+    color: var(--text-dark);
+    overflow-x: hidden;
+    line-height: 1.5;
+}
+
+body.menu-open {
+    overflow: hidden;
+}
+
+.wrapper {
+    max-width: 1134px;
+    margin: 0 auto;
+    padding: 0 24px;
+    position: relative;
+}
+
+/* ==========================================================================
+   3. REUSABLE UTILITIES & BUTTONS
+   ========================================================================== */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 155px;
+    height: 54px;
+    padding: 0 30px;
+    border-radius: 27px;
+    font-weight: 600;
+    font-size: 15px;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+}
+
+.btn:active {
+    transform: scale(0.97);
+}
+
+.btn.dark {
+    background-color: var(--btn-dark-bg);
+    color: var(--text-light);
+}
+
+.btn.dark:hover {
+    background-color: #11293d;
+}
+
+.btn.light {
+    background-color: var(--accent-orange);
+    color: var(--text-light);
+    box-shadow: 0 4px 14px rgba(255, 126, 71, 0.4);
+}
+
+.btn.light:hover {
+    background-color: #e66e3c;
+    box-shadow: 0 6px 20px rgba(255, 126, 71, 0.6);
+}
+
+.btn.enrol-icon::before {
+    content: "✏️";
+    font-size: 14px;
+    margin-right: 8px;
+}
+
+/* ==========================================================================
+   4. HEADER & NAV NAVIGATION
+   ========================================================================== */
+header {
+    background: var(--primary-gradient);
+    padding: 24px 0 100px 0;
+    min-height: 95vh;
+    color: var(--text-light);
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 60px;
+    color: var(--text-light);
+    position: relative;
+    z-index: 10;
+}
+
+nav .brand {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    gap: 24px;
+}
+
+nav .logo {
+    font-family: var(--font-heading);
+    font-size: 32px;
+    font-weight: 800;
+}
+
+nav .nav-toggle {
+    display: none;
+    width: 38px;
+    height: 38px;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 6px;
+}
+
+nav .nav-toggle span {
+    display: block;
+    width: 100%;
+    height: 3px;
+    border-radius: 999px;
+    background: var(--text-light);
+    transition: transform 0.25s ease, opacity 0.25s ease;
+}
+
+nav.open .nav-toggle span:nth-child(1) {
+    transform: translateY(9px) rotate(45deg);
+}
+
+nav.open .nav-toggle span:nth-child(2) {
+    opacity: 0;
+}
+
+nav.open .nav-toggle span:nth-child(3) {
+    transform: translateY(-9px) rotate(-45deg);
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+    align-items: center;
+    gap: 32px;
+    color: var(--text-light);
+}
+
+/* ==========================================================================
+   5. HERO ARCHITECTURE & CARD PLACEMENTS
+   ========================================================================== */
+.hero-section {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 40px;
+}
+
+.hero-section .left {
+    flex: 1;
+    max-width: 520px;
+}
+
+.hero-section h1 {
+    font-family: var(--font-heading);
+    font-size: 54px;
+    font-weight: 800;
+    line-height: 1.15;
+    margin-bottom: 24px;
+}
+
+.hero-section p {
+    font-size: 16px;
+    line-height: 1.6;
+    color: var(--text-muted);
+    margin-bottom: 36px;
+}
+
+.hero-section .right {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    position: relative;
+}
+
+.hero-section .right img {
+    width: 100%;
+    max-height: 500px;
+    object-fit: contain;
+}
+
+.achievemrntcard {
+    background: #ffffff;
+    color: var(--text-dark);
+    padding: 16px 24px;
+    border-radius: 18px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    position: absolute;
+    width: 190px;
+}
+
+.achievemrntcard .content {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.achievemrntcard h3 {
+    font-size: 26px;
+    font-weight: 800;
+}
+
+.achievemrntcard p {
+    font-size: 12px;
+    color: #64748b;
+    font-weight: 500;
+}
+
+.star-icon {
+    width: 20px !important;
+    height: 20px;
+}
+
+.students-enrolled {
+    left: -20px;
+    top: 50%;
+}
+
+.Onerall-rating {
+    right: 20px;
+    bottom: 20px;
+}
+
+/* ==========================================================================
+   6. TESTIMONIALS MESH SECTION
+   ========================================================================== */
+.tetimonial-section {
+    padding: 120px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 60px;
+}
+
+.tetimonial-section .left {
+    flex: 1.2;
+    display: flex;
+    gap: 32px;
+}
+
+.testimonial-block {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    flex: 1;
+}
+
+.testimonial-block.text-shifted {
+    transform: translateY(60px);
+}
+
+.testimonial-card {
+    background: #ffffff;
+    border-radius: 18px;
+    padding: 28px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.05);
+    font-size: 15px;
+    line-height: 1.6;
+    color: #475569;
+    position: relative;
+}
+
+.user-info-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding-left: 8px;
+}
+
+.user-avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.info h4 {
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.info .company {
+    font-size: 13px;
+    color: #94a3b8;
+}
+
+.tetimonial-section .right {
+    flex: 0.8;
+}
+
+.tetimonial-section h2 {
+    font-family: var(--font-heading);
+    font-size: 44px;
+    font-weight: 800;
+    line-height: 1.2;
+    margin-bottom: 24px;
+}
+
+.tetimonial-section p {
+    color: #64748b;
+    margin-bottom: 20px;
+    line-height: 1.6;
+}
+
+.learn-more-btn {
+    margin-top: 16px;
+}
+
+/* ==========================================================================
+   7. COURSE DISPLAY MODALITY
+   ========================================================================== */
+.courses-section {
+    background: var(--btn-dark-bg);
+    color: var(--text-light);
+    padding: 100px 0;
+}
+
+.courses-section h2.light {
+    font-family: var(--font-heading);
+    font-size: 40px;
+    font-weight: 800;
+    margin-bottom: 48px;
+}
+
+.course-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 40px;
+    margin-bottom: 48px;
+}
+
+.course-card img {
+    width: 100%;
+    height: 280px;
+    border-radius: 16px;
+    object-fit: cover;
+}
+
+.course-card .info {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.course-card h3 {
+    font-size: 22px;
+    font-weight: 600;
+}
+
+.course-card .duration {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 6px 16px;
+    border-radius: 30px;
+    font-size: 14px;
+}
+
+.center-btn-wrapper {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+/* ==========================================================================
+   8. MOBILE APP HUB
+   ========================================================================== */
+.app-section {
+    padding: 100px 0;
+    text-align: center;
+}
+
+.app-section h2 {
+    font-family: var(--font-heading);
+    font-size: 42px;
+    font-weight: 800;
+    margin-bottom: 12px;
+}
+
+.app-section p {
+    color: #64748b;
+    margin-bottom: 32px;
+}
+
+.app-button {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+}
+
+.app-btn {
+    display: flex;
+    align-items: center;
+    background: var(--text-dark);
+    color: var(--text-light);
+    padding: 14px 28px;
+    border-radius: 12px;
+    cursor: pointer;
+    gap: 12px;
+    transition: background 0.2s ease;
+}
+
+.app-btn:hover {
+    background: #1e293b;
+}
+
+/* ==========================================================================
+   9. FOOTER GRID STRUCTURE
+   ========================================================================== */
+footer {
+    background: #070c14;
+    color: #94a3b8;
+    padding: 80px 0 40px 0;
+}
+
+.links-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    padding-bottom: 48px;
+    margin-bottom: 32px;
+}
+
+.links {
+    color: var(--text-light);
+}
+
+footer h3 {
+    color: var(--text-light);
+    font-size: 18px;
+    margin-bottom: 24px;
+}
+
+footer ul {
+    list-style: none;
+}
+
+footer ul li {
+    margin-bottom: 12px;
+}
+
+footer ul li a:hover {
+    color: var(--text-light);
+}
+
+.social {
+    display: flex;
+    gap: 16px;
+    margin: 16px 0;
+}
+
+.newsletter-form {
+    display: flex;
+    gap: 12px;
+    margin-top: 16px;
+}
+
+.newsletter-form input {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 12px 20px;
+    border-radius: 27px;
+    color: var(--text-light);
+    flex: 1;
+    outline: none;
+}
+
+.newsletter-form input::placeholder {
+    color: #475569;
+}
+
+.copyright {
+    text-align: center;
+    font-size: 13px;
+    color: #475569;
+}
+
+/* ==========================================================================
+   10. MEDIA QUERIES (RESPONSIVE ENGINE)
+   ========================================================================== */
+@media (max-width: 1024px) {
+    .wrapper {
+        padding: 0 20px;
+    }
+
+    .hero-section {
+        gap: 28px;
+    }
+
+    .tetimonial-section {
+        padding: 100px 0;
+    }
+}
+
+@media (max-width: 900px) {
+    nav ul {
+        gap: 24px;
+    }
+
+    .hero-section {
+        flex-direction: column;
+        gap: 24px;
+        text-align: center;
+    }
+
+    .hero-section .left,
+    .hero-section .right {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .course-grid {
+        gap: 32px;
+    }
+
+    .courses-section h2.light,
+    .tetimonial-section h2,
+    .app-section h2 {
+        font-size: clamp(2rem, 5vw, 3.2rem);
+    }
+
+    .testimonial-block.text-shifted {
+        transform: translateY(0);
+    }
+}
+
+@media (max-width: 768px) {
+    nav .brand {
+        width: auto;
+    }
+
+    .nav-toggle {
+        display: flex !important;
+        
+        
+    }
+
+    nav ul {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 100%;
+        height: 100vh;
+        background: var(--text-light);
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 24px;
+        padding: 0 32px;
+        transition: right 0.3s ease;
+        z-index: 20;
+        opacity: 1.25;
+    }
+
+    nav.open ul {
+        right: 0;
+    }
+
+    nav ul li {
+        width: 100%;
+        text-align: center;
+    }
+
+    nav ul li a {
+        font-size: 18px;
+        display: inline-block;
+        width: 100%;
+        padding: 14px 0;
+    }
+
+    .hero-section {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .hero-section .left,
+    .hero-section .right {
+        width: 100%;
+        max-width: 660px;
+        min-width: 0;
+    }
+
+    .hero-section .right {
+        margin-top: 32px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+    }
+
+    .hero-section h1 {
+        font-size: clamp(2.5rem, 6vw, 4rem);
+    }
+
+    /* Fixed Card Stack Collision on Mobile viewports */
+    .achievemrntcard {
+        position: static !important;
+        width: 100% !important;
+        max-width: 340px !important;
+        margin: 10px auto 0 auto;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+    }
+
+    .hero-section p {
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 100%;
+    }
+
+    .tetimonial-section {
+        flex-direction: column;
+        align-items: stretch;
+        padding: 80px 0;
+    }
+
+    .tetimonial-section .left {
+        flex-direction: column;
+        gap: 24px;
+    }
+
+    .tetimonial-section .right {
+        width: 100%;
+        text-align: center;
+    }
+
+    .course-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .app-button {
+        flex-direction: column;
+        gap: 16px;
+        align-items: center;
+    }
+
+    .links-container {
+        grid-template-columns: 1fr;
+        gap: 32px;
+    }
+
+    .newsletter-form {
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .newsletter-form input {
+        width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    header {
+        padding: 16px 0 80px;
+    }
+
+    nav {
+        margin-bottom: 40px;
+    }
+
+    .wrapper {
+        padding: 0 16px;
+    }
+
+    .hero-section {
+        gap: 24px;
+    }
+
+    .courses-section {
+        padding: 80px 0;
+    }
+
+    .app-section {
+        padding: 60px 0;
+    }
+
+    footer {
+        padding: 60px 0 24px;
+    }
+
+    .btn {
+        width: 100%;
+        max-width: 100%;
+        min-width: 0;
+    }
+
+    .app-btn {
+        width: 100%;
+        justify-content: center;
+        padding: 16px 20px;
+    }
+}
