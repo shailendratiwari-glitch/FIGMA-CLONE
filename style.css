@@ -38,6 +38,11 @@ body {
     line-height: 1.5;
 }
 
+header {
+    background: linear-gradient(180deg, #696eff 0%, #5d65f6 100%);
+    padding: 32px 0;
+}
+
 body.menu-open {
     overflow: hidden;
 }
@@ -99,15 +104,8 @@ body.menu-open {
 }
 
 /* ==========================================================================
-   4. HEADER & NAV NAVIGATION
+   GLOBAL NAV LAYOUT (DESKTOP)
    ========================================================================== */
-header {
-    background: var(--primary-gradient);
-    padding: 24px 0 100px 0;
-    min-height: 95vh;
-    color: var(--text-light);
-}
-
 nav {
     display: flex;
     justify-content: space-between;
@@ -116,33 +114,57 @@ nav {
     color: var(--text-light);
     position: relative;
     z-index: 10;
+    width: 100%; /* Ensures navbar uses the full layout width */
 }
 
 nav .brand {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    width: 100%;
-    gap: 24px;
+    /* On desktop, this stays compact so the links have room */
+    flex-shrink: 0; 
 }
 
 nav .logo {
     font-family: var(--font-heading);
     font-size: 32px;
     font-weight: 800;
+    text-decoration: none;
+    color: var(--text-light);
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+    align-items: center;
+    gap: 40px; /* Generous spacing matching the Figma design */
+    margin: 0;
+    padding: 0;
+}
+
+nav ul li a {
+    color: var(--text-light);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 16px;
+    transition: opacity 0.2s ease;
+}
+
+nav ul li a:hover {
+    opacity: 0.8;
 }
 
 nav .nav-toggle {
-    display: none;
-    width: 38px;
-    height: 38px;
+    display: none; /* Hidden completely on desktop layouts */
+    width: 32px;
+    height: 24px;
     border: none;
     background: transparent;
     cursor: pointer;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
-    gap: 6px;
+    padding: 0;
 }
 
 nav .nav-toggle span {
@@ -152,26 +174,6 @@ nav .nav-toggle span {
     border-radius: 999px;
     background: var(--text-light);
     transition: transform 0.25s ease, opacity 0.25s ease;
-}
-
-nav.open .nav-toggle span:nth-child(1) {
-    transform: translateY(9px) rotate(45deg);
-}
-
-nav.open .nav-toggle span:nth-child(2) {
-    opacity: 0;
-}
-
-nav.open .nav-toggle span:nth-child(3) {
-    transform: translateY(-9px) rotate(-45deg);
-}
-
-nav ul {
-    display: flex;
-    list-style: none;
-    align-items: center;
-    gap: 32px;
-    color: var(--text-light);
 }
 
 /* ==========================================================================
@@ -195,6 +197,7 @@ nav ul {
     font-weight: 800;
     line-height: 1.15;
     margin-bottom: 24px;
+    color: var(--text-light);
 }
 
 .hero-section p {
@@ -563,47 +566,67 @@ footer ul li a:hover {
 }
 
 @media (max-width: 768px) {
+    nav {
+        /* Changes direction structure on mobile to keep things clean */
+        flex-direction: column; 
+        align-items: stretch;
+    }
+
     nav .brand {
-        width: auto;
+        width: 100%; /* Forces the brand block to stretch completely edge-to-edge */
+        display: flex;
+        justify-content: space-between; /* Spits the logo left and hamburger cleanly right */
+        align-items: center;
     }
 
-    .nav-toggle {
-        display: flex !important;
-        
-        
+    nav .nav-toggle {
+        display: flex; /* Toggle icon becomes visible */
     }
 
+    /* Mobile Drawer Overlay Panel */
     nav ul {
         position: fixed;
         top: 0;
-        right: -100%;
-        width: 100%;
+        right: -100%; /* Hidden off-screen right by default */
+        width: 280px; /* Clear mobile panel spec width instead of full viewport bleed */
         height: 100vh;
-        background: var(--text-light);
+        background-color: #071927 !important; /* Strong dark background for mobile drawer */
+        color: var(--text-light);
+        box-shadow: -10px 0 30px rgba(0, 0, 0, 0.25);
         flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        gap: 24px;
-        padding: 0 32px;
-        transition: right 0.3s ease;
+        justify-content: flex-start;
+        align-items: flex-start;
+        gap: 0;
+        padding: 100px 32px 32px 32px;
+        transition: right 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         z-index: 20;
-        opacity: 1.25;
     }
 
     nav.open ul {
-        right: 0;
+        right: 0; /* Smoothly slides in when target open state class triggers */
     }
 
     nav ul li {
         width: 100%;
-        text-align: center;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    nav ul li:last-child {
+        border-bottom: none;
+        margin-top: 24px; /* Adds clean spacing block above mobile CTA link button */
     }
 
     nav ul li a {
         font-size: 18px;
-        display: inline-block;
+        display: block;
         width: 100%;
-        padding: 14px 0;
+        padding: 16px 0;
+    }
+    
+    /* Center the Enroll button inside mobile navigation panel drawer overlay */
+    nav ul li .btn {
+        width: 100%;
+        max-width: 100%;
     }
 
     .hero-section {
