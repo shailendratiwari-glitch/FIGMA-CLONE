@@ -242,7 +242,7 @@ nav .nav-toggle span {
 }
 
 .achievemrntcard p {
-    font-size: 12px;
+    font-size: 18px;
     color: #64748b;
     font-weight: 500;
 }
@@ -271,53 +271,94 @@ nav .nav-toggle span {
     justify-content: space-between;
     align-items: center;
     gap: 60px;
+    max-width: 1200px; /* Adjust based on your wrapper */
+    margin: 0 auto;
 }
 
+/* Left side container holding the timeline stack */
 .tetimonial-section .left {
-    flex: 1.2;
+    flex: 1;
     display: flex;
-    gap: 32px;
+    flex-direction: column; /* Stack cards vertically */
+    gap: 40px;
+    position: relative;
+    padding-left: 60px; /* Space to position the timeline */
+    max-width: 500px;
 }
 
+/* The vertical line timeline */
+.tetimonial-section .left::before {
+    content: '';
+    position: absolute;
+    left: 120px; /* Aligns perfectly with the bubble line indentation */
+    top: 0;
+    bottom: 0;
+    width: 12px;
+    background: #063742; /* Deep teal timeline */
+    border-radius: 8px;
+    z-index: 1;
+}
+
+/* Individual wrapper block for each student review */
 .testimonial-block {
     display: flex;
     flex-direction: column;
-    gap: 16px;
-    flex: 1;
+    align-items: flex-start;
+    position: relative;
+    z-index: 2; /* Sits over the timeline background */
 }
 
-.testimonial-block.text-shifted {
-    transform: translateY(60px);
+/* Colored Comment Bubbles */
+.testimonial-bubble {
+    width: 320px;
+    padding: 14px 20px;
+    border-radius: 14px;
+    color: #ffffff;
+    font-weight: 600;
+    font-size: 14px;
+    box-shadow: 0 10px 25px rgba(9, 30, 63, 0.15);
+    margin-bottom: -15px; /* Pulls the white card up slightly underneath it */
+    margin-left: 20px; /* Indents the bubble to reveal the timeline strip */
 }
 
+.bubble-blue {
+    background: linear-gradient(180deg, #6872ff 0%, #4f56f0 100%);
+}
+
+.bubble-orange {
+    background: linear-gradient(180deg, #ff7e47 0%, #e66e3c 100%);
+}
+
+/* White Profile Info Cards */
 .testimonial-card {
     background: #ffffff;
     border-radius: 18px;
-    padding: 28px;
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.05);
-    font-size: 15px;
-    line-height: 1.6;
-    color: #475569;
-    position: relative;
+    padding: 15px 20px;
+    box-shadow: 0 15px 30px rgba(2, 6, 23, 0.08);
+    width: 320px;
+    margin-left: 35px; /* Offset from the bubble to follow Figma structure */
+    box-sizing: border-box;
 }
 
+/* Card Content Alignments */
 .user-info-wrapper {
     display: flex;
     align-items: center;
-    gap: 12px;
-    padding-left: 8px;
+    justify-content: space-between;
+    width: 100%;
 }
 
-.user-avatar {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    object-fit: cover;
+.user-info-wrapper .info {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
 }
 
 .info h4 {
     font-size: 16px;
     font-weight: 700;
+    color: #063742;
+    margin: 0;
 }
 
 .info .company {
@@ -325,42 +366,62 @@ nav .nav-toggle span {
     color: #94a3b8;
 }
 
-.tetimonial-section .right {
-    flex: 0.8;
+/* Rounded Avatar settings */
+.user-avatar {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #ffffff;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
-.tetimonial-section h2 {
-    font-family: var(--font-heading);
+/* Right Content Column */
+.tetimonial-section .right {
+    flex: 1;
+    max-width: 500px;
+}
+
+.students-title {
     font-size: 44px;
+    color: #063742; 
     font-weight: 800;
     line-height: 1.2;
-    margin-bottom: 24px;
+    margin-bottom: 20px;
 }
 
 .tetimonial-section p {
     color: #64748b;
     margin-bottom: 20px;
     line-height: 1.6;
+    font-size: 16px;
 }
 
 .learn-more-btn {
-    margin-top: 16px;
-}
-
-/* ==========================================================================
+    display: inline-block;
+    margin-top: 10px;
+    padding: 12px 28px;
+    background-color: #ff7e47; /* Matches figma button */
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 600;
+}/* ==========================================================================
    7. COURSE DISPLAY MODALITY
    ========================================================================== */
 .courses-section {
-    background: var(--btn-dark-bg);
+    background: linear-gradient(180deg, #696eff 0%, #243274 100%);
     color: var(--text-light);
     padding: 100px 0;
 }
 
 .courses-section h2.light {
     font-family: var(--font-heading);
-    font-size: 40px;
+    font-size: 48px;
     font-weight: 800;
     margin-bottom: 48px;
+    text-align: center;
+    color: #ffffff;
 }
 
 .course-grid {
@@ -373,7 +434,7 @@ nav .nav-toggle span {
 .course-card img {
     width: 100%;
     height: 280px;
-    border-radius: 16px;
+    border-radius: 14px 14px 0 0;
     object-fit: cover;
 }
 
@@ -386,7 +447,8 @@ nav .nav-toggle span {
 
 .course-card h3 {
     font-size: 22px;
-    font-weight: 600;
+    font-weight: 700;
+    color: #0b2b36; /* deep heading color */
 }
 
 .course-card .duration {
@@ -398,8 +460,28 @@ nav .nav-toggle span {
 
 .center-btn-wrapper {
     display: flex;
-    justify-content: center;
+    justify-content: flex-end;
     margin-top: 20px;
+}
+
+.course-card {
+    background: #ffffff;
+    border-radius: 18px;
+    padding: 18px;
+    box-shadow: 0 20px 40px rgba(2,6,23,0.12);
+    position: relative;
+    overflow: hidden;
+}
+
+.course-card::after {
+    content: '';
+    position: absolute;
+    left: 20px;
+    right: 20px;
+    bottom: 8px;
+    height: 8px;
+    background: #063742;
+    border-radius: 8px;
 }
 
 /* ==========================================================================
@@ -749,5 +831,69 @@ footer ul li a:hover {
         width: 100%;
         justify-content: center;
         padding: 16px 20px;
+    }
+}
+
+/* ==========================================
+   RESPONSIVE MEDIA QUERIES (TESTIMONIALS)
+   ========================================== */
+
+/* Tablets and small laptops (under 992px wide) */
+@media (max-width: 992px) {
+    .tetimonial-section {
+        gap: 40px;
+        padding: 80px 20px;
+    }
+    
+    .students-title {
+        font-size: 36px;
+    }
+}
+
+/* Mobile Devices (under 768px wide) */
+@media (max-width: 768px) {
+    .tetimonial-section {
+        flex-direction: column-reverse; /* Puts text on top, testimonials on bottom for cleaner mobile reading */
+        align-items: center;
+        text-align: center;
+        gap: 50px;
+        padding: 60px 16px;
+    }
+
+    .tetimonial-section .right,
+    .tetimonial-section .left {
+        max-width: 100%;
+        width: 100%;
+        padding-left: 0; /* Remove desktop indentations */
+    }
+
+    /* Recenter the timeline track for mobile layout */
+    .tetimonial-section .left::before {
+        left: 30px; /* Moves line to the far left of the mobile container */
+    }
+
+    /* Re-align blocks to anchor to the mobile timeline */
+    .testimonial-block {
+        width: 100%;
+    }
+
+    .testimonial-bubble {
+        width: calc(100% - 60px); /* Makes bubble fluidly adapt to screen size */
+        max-width: 340px;
+        margin-left: 55px; /* Shifts right to clear the mobile timeline */
+        position: relative; /* unset absolute positioning for mobile */
+        left: 0;
+        top: 0;
+    }
+
+    .testimonial-card {
+        width: calc(100% - 60px); /* Makes card fluidly adapt to screen size */
+        max-width: 340px;
+        margin-left: 55px;
+        box-shadow: 0 12px 30px rgba(2,6,23,0.06);
+    }
+    
+    .students-title {
+        font-size: 32px;
     }
 }
