@@ -311,7 +311,7 @@ nav .nav-toggle span {
 /* Colored Comment Bubbles */
 .testimonial-bubble {
     width: 320px;
-    padding: 14px 20px;
+    padding: 22px 10px;
     border-radius: 14px;
     color: #ffffff;
     font-weight: 600;
@@ -530,77 +530,130 @@ nav .nav-toggle span {
    9. FOOTER GRID STRUCTURE
    ========================================================================== */
 footer {
-    background: #070c14;
-    color: #94a3b8;
+    background: #050a12; /* Deep dark blue background from Figma */
+    color: #ffffff;
     padding: 80px 0 40px 0;
+    font-family: sans-serif;
 }
 
 .links-container {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 40px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-    padding-bottom: 48px;
-    margin-bottom: 32px;
+    gap: 60px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px 48px 20px;
 }
 
-.links {
-    color: var(--text-light);
-}
-
-footer h3 {
-    color: var(--text-light);
+/* Headings styling matching Figma orange accent */
+.links h3 {
+    color: #ff7e47; /* Use your orange variable here if needed e.g., var(--accent-orange) */
     font-size: 18px;
+    font-weight: 700;
     margin-bottom: 24px;
 }
 
 footer ul {
     list-style: none;
+    padding: 0;
+    margin: 0;
 }
 
 footer ul li {
-    margin-bottom: 12px;
+    margin-bottom: 14px;
+}
+
+footer ul li a {
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 15px;
+    opacity: 0.9;
+    transition: opacity 0.2s ease;
 }
 
 footer ul li a:hover {
-    color: var(--text-light);
+    opacity: 1;
+    color: #ff7e47;
+}
+
+/* Contact Info & Socials Section */
+.contact-email {
+    color: #ffffff;
+    margin-bottom: 16px;
+    font-size: 15px;
 }
 
 .social {
     display: flex;
     gap: 16px;
-    margin: 16px 0;
+    margin-bottom: 24px;
 }
 
+.social a img {
+    width: 24px;
+    height: 24px;
+}
+
+/* --- Figma Subscription Bar Structure --- */
 .newsletter-form {
     display: flex;
-    gap: 12px;
-    margin-top: 16px;
+    align-items: center;
+    background: #ffffff; /* White container wrapper background */
+    border: 1px solid #ffffff;
+    border-radius: 8px; /* Corner radius matching your Figma selection */
+    padding: 4px 6px;   /* Inside spacing creating the inner button boundary */
+    max-width: 521px;   /* Width specs matching W: 521 in your sidebar */
+    height: 39px;       /* Height specs matching H: 39 in your sidebar */
+    box-sizing: border-box;
 }
 
 .newsletter-form input {
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    padding: 12px 20px;
-    border-radius: 27px;
-    color: var(--text-light);
+    background: transparent; /* Allows container's white background to show */
+    border: none;
+    padding: 0 12px;
+    color: #050a12;
+    font-size: 14px;
     flex: 1;
     outline: none;
+    width: 100%;
 }
 
 .newsletter-form input::placeholder {
-    color: #475569;
+    color: #94a3b8; /* Muted gray placeholder text color */
+}
+
+/* Inline Dark Subscribe Button */
+.btn-llight {
+    background-color: #02506b; /* Dark blue button background */
+    color: #ffffff;
+    border: none;
+    padding: 0 20px;
+    height: 100%;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: background 0.2s ease;
+}
+
+.btn-llight:hover {
+    background-color: #013d52;
 }
 
 .copyright {
     text-align: center;
     font-size: 13px;
     color: #475569;
+    margin-top: 30px;
 }
 
+/* Mobile responsive patch */
 /* ==========================================================================
    10. MEDIA QUERIES (RESPONSIVE ENGINE)
    ========================================================================== */
+
+/* --- Large Tablets / Small Laptops (Max-width: 1024px) --- */
 @media (max-width: 1024px) {
     .wrapper {
         padding: 0 20px;
@@ -613,8 +666,37 @@ footer ul li a:hover {
     .tetimonial-section {
         padding: 100px 0;
     }
+
+    /* Footer Tablet Adaptations */
+    footer {
+        padding: 60px 32px 30px 32px;
+    }
+    
+    .links-container {
+        grid-template-columns: repeat(2, 1fr); /* 2 columns for quick links & course */
+        gap: 48px;
+    }
+
+    /* Newsletter column spans cleanly across both columns at the bottom */
+    .links:nth-child(3) { 
+        grid-column: span 2;
+        max-width: 521px;
+    }
 }
 
+/* --- Standard Tablets (Max-width: 992px) --- */
+@media (max-width: 992px) {
+    .tetimonial-section {
+        gap: 40px;
+        padding: 80px 20px;
+    }
+    
+    .students-title {
+        font-size: 36px;
+    }
+}
+
+/* --- Small Tablets / Landscape Phones (Max-width: 900px) --- */
 @media (max-width: 900px) {
     nav ul {
         gap: 24px;
@@ -647,32 +729,32 @@ footer ul li a:hover {
     }
 }
 
+/* --- Mobile Devices (Max-width: 768px) --- */
 @media (max-width: 768px) {
     nav {
-        /* Changes direction structure on mobile to keep things clean */
         flex-direction: column; 
         align-items: stretch;
     }
 
     nav .brand {
-        width: 100%; /* Forces the brand block to stretch completely edge-to-edge */
+        width: 100%;
         display: flex;
-        justify-content: space-between; /* Spits the logo left and hamburger cleanly right */
+        justify-content: space-between;
         align-items: center;
     }
 
     nav .nav-toggle {
-        display: flex; /* Toggle icon becomes visible */
+        display: flex;
     }
 
-    /* Mobile Drawer Overlay Panel */
+    /* Mobile Navigation Drawer */
     nav ul {
         position: fixed;
         top: 0;
-        right: -100%; /* Hidden off-screen right by default */
-        width: 280px; /* Clear mobile panel spec width instead of full viewport bleed */
+        right: -100%;
+        width: 280px;
         height: 100vh;
-        background-color: #071927 !important; /* Strong dark background for mobile drawer */
+        background-color: #071927 !important;
         color: var(--text-light);
         box-shadow: -10px 0 30px rgba(0, 0, 0, 0.25);
         flex-direction: column;
@@ -685,7 +767,7 @@ footer ul li a:hover {
     }
 
     nav.open ul {
-        right: 0; /* Smoothly slides in when target open state class triggers */
+        right: 0;
     }
 
     nav ul li {
@@ -695,7 +777,7 @@ footer ul li a:hover {
 
     nav ul li:last-child {
         border-bottom: none;
-        margin-top: 24px; /* Adds clean spacing block above mobile CTA link button */
+        margin-top: 24px;
     }
 
     nav ul li a {
@@ -705,12 +787,12 @@ footer ul li a:hover {
         padding: 16px 0;
     }
     
-    /* Center the Enroll button inside mobile navigation panel drawer overlay */
     nav ul li .btn {
         width: 100%;
         max-width: 100%;
     }
 
+    /* Hero section responsive structural fixes */
     .hero-section {
         flex-direction: column;
         align-items: center;
@@ -736,7 +818,6 @@ footer ul li a:hover {
         font-size: clamp(2.5rem, 6vw, 4rem);
     }
 
-    /* Fixed Card Stack Collision on Mobile viewports */
     .achievemrntcard {
         position: static !important;
         width: 100% !important;
@@ -751,22 +832,51 @@ footer ul li a:hover {
         max-width: 100%;
     }
 
+    /* Testimonial Section Fluid Scale Engine */
     .tetimonial-section {
-        flex-direction: column;
-        align-items: stretch;
-        padding: 80px 0;
-    }
-
-    .tetimonial-section .left {
-        flex-direction: column;
-        gap: 24px;
-    }
-
-    .tetimonial-section .right {
-        width: 100%;
+        flex-direction: column-reverse; 
+        align-items: center;
         text-align: center;
+        gap: 50px;
+        padding: 60px 16px;
     }
 
+    .tetimonial-section .right,
+    .tetimonial-section .left {
+        max-width: 100%;
+        width: 100%;
+        padding-left: 0;
+    }
+
+    .tetimonial-section .left::before {
+        left: 30px;
+    }
+
+    .testimonial-block {
+        width: 100%;
+    }
+
+    .testimonial-bubble {
+        width: calc(100% - 60px);
+        max-width: 340px;
+        margin-left: 55px;
+        position: relative;
+        left: 0;
+        top: 0;
+    }
+
+    .testimonial-card {
+        width: calc(100% - 60px);
+        max-width: 340px;
+        margin-left: 55px;
+        box-shadow: 0 12px 30px rgba(2,6,23,0.06);
+    }
+    
+    .students-title {
+        font-size: 32px;
+    }
+
+    /* Course Grid & Apps */
     .course-grid {
         grid-template-columns: 1fr;
     }
@@ -777,21 +887,40 @@ footer ul li a:hover {
         align-items: center;
     }
 
+    /* --- Footer Phone Adaptations (Consolidated) --- */
     .links-container {
-        grid-template-columns: 1fr;
-        gap: 32px;
+        grid-template-columns: 1fr; /* Fallback to 1 straight vertical list column */
+        gap: 36px;
+        padding-bottom: 36px;
     }
 
+    .links:nth-child(3) {
+        grid-column: span 1;
+        width: 100%;
+    }
+
+    /* Keeps pill inline input block clean and proportional */
     .newsletter-form {
-        flex-direction: column;
-        gap: 12px;
+        display: flex;
+        flex-direction: row; /* Overriding your old column layout instruction to preserve the Figma pill style */
+        height: 44px;
+        width: 100%;
+        max-width: 340px;
+        margin: 0 auto;
     }
 
     .newsletter-form input {
         width: 100%;
     }
+
+    .btn-llight, .btn-subscribe {
+        padding: 0 16px;
+        font-size: 12px;
+        height: 100%;
+    }
 }
 
+/* --- Tiny Screens / Small Smart Phones (Max-width: 480px) --- */
 @media (max-width: 480px) {
     header {
         padding: 16px 0 80px;
@@ -818,7 +947,7 @@ footer ul li a:hover {
     }
 
     footer {
-        padding: 60px 0 24px;
+        padding: 48px 0 24px;
     }
 
     .btn {
@@ -831,69 +960,5 @@ footer ul li a:hover {
         width: 100%;
         justify-content: center;
         padding: 16px 20px;
-    }
-}
-
-/* ==========================================
-   RESPONSIVE MEDIA QUERIES (TESTIMONIALS)
-   ========================================== */
-
-/* Tablets and small laptops (under 992px wide) */
-@media (max-width: 992px) {
-    .tetimonial-section {
-        gap: 40px;
-        padding: 80px 20px;
-    }
-    
-    .students-title {
-        font-size: 36px;
-    }
-}
-
-/* Mobile Devices (under 768px wide) */
-@media (max-width: 768px) {
-    .tetimonial-section {
-        flex-direction: column-reverse; /* Puts text on top, testimonials on bottom for cleaner mobile reading */
-        align-items: center;
-        text-align: center;
-        gap: 50px;
-        padding: 60px 16px;
-    }
-
-    .tetimonial-section .right,
-    .tetimonial-section .left {
-        max-width: 100%;
-        width: 100%;
-        padding-left: 0; /* Remove desktop indentations */
-    }
-
-    /* Recenter the timeline track for mobile layout */
-    .tetimonial-section .left::before {
-        left: 30px; /* Moves line to the far left of the mobile container */
-    }
-
-    /* Re-align blocks to anchor to the mobile timeline */
-    .testimonial-block {
-        width: 100%;
-    }
-
-    .testimonial-bubble {
-        width: calc(100% - 60px); /* Makes bubble fluidly adapt to screen size */
-        max-width: 340px;
-        margin-left: 55px; /* Shifts right to clear the mobile timeline */
-        position: relative; /* unset absolute positioning for mobile */
-        left: 0;
-        top: 0;
-    }
-
-    .testimonial-card {
-        width: calc(100% - 60px); /* Makes card fluidly adapt to screen size */
-        max-width: 340px;
-        margin-left: 55px;
-        box-shadow: 0 12px 30px rgba(2,6,23,0.06);
-    }
-    
-    .students-title {
-        font-size: 32px;
     }
 }
